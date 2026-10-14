@@ -1,0 +1,109 @@
+/* Escenas SVG animadas. Cada elemento animado usa una clase a-* o c-* y nunca lleva atributo transform. */
+.scene{display:block;width:100%;height:auto}
+.scene [class*="a-"],.scene [class*="c-"],.scene [class*="s-"]{transform-box:fill-box;transform-origin:center}
+.scene .o-b{transform-origin:50% 100%}
+.scene .o-t{transform-origin:50% 0}
+.scene .o-l{transform-origin:0 50%}
+.scene .o-r{transform-origin:100% 50%}
+.scene .o-tl{transform-origin:0 0}
+
+/* ---------- animaciones sueltas (var --d duración, --dl retraso) ---------- */
+.a-bob{animation:bob var(--d,3s) var(--dl,0s) ease-in-out infinite}
+.a-sway{animation:sway var(--d,4s) var(--dl,0s) ease-in-out infinite}
+.a-pulse{animation:pulse var(--d,2s) var(--dl,0s) ease-in-out infinite}
+.a-spin{animation:spin var(--d,10s) var(--dl,0s) linear infinite}
+.a-blink{animation:blink var(--d,4.5s) var(--dl,0s) infinite}
+.a-twinkle{animation:twinkle var(--d,2s) var(--dl,0s) ease-in-out infinite}
+.a-float{animation:float var(--d,8s) var(--dl,0s) ease-in-out infinite}
+.a-fall{animation:fall var(--d,2s) var(--dl,0s) ease-in infinite}
+.a-rise{animation:fall var(--d,3s) var(--dl,0s) ease-out infinite}
+.a-drive{animation:drive var(--d,9s) var(--dl,0s) linear infinite}
+.a-flap{animation:flap var(--d,.18s) var(--dl,0s) ease-in-out infinite}
+.a-ripple{animation:ripple var(--d,2s) var(--dl,0s) ease-out infinite}
+.a-wiggle{animation:wiggle var(--d,.4s) var(--dl,0s) ease-in-out infinite}
+.a-hop{animation:hop var(--d,.7s) var(--dl,0s) infinite}
+.a-draw{animation:draw var(--d,6s) var(--dl,0s) ease-in-out infinite}
+.a-dash{animation:dash var(--d,1s) var(--dl,0s) linear infinite}
+
+@keyframes bob{50%{transform:translateY(-10px)}}
+@keyframes sway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+@keyframes pulse{50%{transform:scale(1.1)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
+@keyframes twinkle{0%,100%{opacity:.25;transform:scale(.7)}50%{opacity:1;transform:scale(1.15)}}
+@keyframes float{0%,100%{transform:translate(0,0)}33%{transform:translate(14px,-8px)}66%{transform:translate(-10px,-3px)}}
+@keyframes fall{0%{transform:translateY(0);opacity:0}12%{opacity:1}85%{opacity:1}100%{transform:translateY(var(--y,200px));opacity:0}}
+@keyframes drive{from{transform:translateX(var(--x0,-260px))}to{transform:translateX(var(--x1,1000px))}}
+@keyframes flap{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.25)}}
+@keyframes ripple{0%{transform:scale(.2);opacity:.9}100%{transform:scale(1.5);opacity:0}}
+@keyframes wiggle{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+@keyframes hop{0%,100%{transform:translateY(0);animation-timing-function:ease-out}50%{transform:translateY(-22px);animation-timing-function:ease-in}}
+@keyframes draw{0%{stroke-dashoffset:1}55%,100%{stroke-dashoffset:0}}
+@keyframes dash{to{stroke-dashoffset:-24}}
+
+/* ---------- ciclo de 6s: fase A (antes) / fase B (hábito bueno) ---------- */
+.c-a{animation:showA var(--d,6s) infinite}
+.c-b{animation:showB var(--d,6s) infinite}
+.c-pop{animation:cpop var(--d,6s) infinite}
+.c-flip{animation:cflip var(--d,6s) ease-in-out infinite}
+@keyframes showA{0%{opacity:0}4%,42%{opacity:1}50%,100%{opacity:0}}
+@keyframes showB{0%,44%{opacity:0}52%,92%{opacity:1}100%{opacity:0}}
+@keyframes cpop{0%,48%{transform:scale(0);opacity:0}58%{transform:scale(1.25);opacity:1}64%,90%{transform:scale(1);opacity:1}98%,100%{transform:scale(0);opacity:0}}
+@keyframes cflip{0%,42%{transform:var(--a)}50%,92%{transform:var(--b)}100%{transform:var(--a)}}
+
+/* ---------- escenas específicas ---------- */
+.s-stream{animation:stream 6s infinite}
+@keyframes stream{0%{opacity:0;transform:scaleY(.1)}6%,40%{opacity:1;transform:scaleY(1)}46%,100%{opacity:0;transform:scaleY(.1)}}
+
+.s-bin{animation:binbounce 6s var(--dl,0s) infinite}
+.s-lid{animation:binlid 6s var(--dl,0s) infinite}
+.s-item{animation:binitem 6s var(--dl,0s) ease-in infinite}
+@keyframes binbounce{0%,29%,40%,100%{transform:scale(1,1)}33%{transform:scale(1.07,.93)}37%{transform:scale(.97,1.04)}}
+@keyframes binlid{0%,14%,34%,100%{transform:rotate(0)}22%,28%{transform:rotate(-24deg)}}
+@keyframes binitem{0%{transform:translateY(-230px);opacity:0}6%{opacity:1}30%{transform:translateY(40px);opacity:1}31%,100%{transform:translateY(40px);opacity:0}}
+
+.s-fridge{animation:fridge 6s ease-in-out infinite}
+.s-box{animation:boxmove 6s infinite}
+@keyframes fridge{0%,12%,86%,100%{transform:scaleX(1)}22%,76%{transform:scaleX(.18)}}
+@keyframes boxmove{0%{transform:translate(0,0);opacity:0}6%,16%{transform:translate(0,0);opacity:1}30%{transform:translate(120px,-90px)}44%,88%{transform:translate(250px,-48px);opacity:1}96%,100%{transform:translate(250px,-48px);opacity:0}}
+
+.s-grow{animation:grow 8s infinite}
+.s-bloom{animation:bloom 8s infinite}
+@keyframes grow{0%,8%{transform:scaleY(.02);opacity:1}55%,92%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+@keyframes bloom{0%,52%{transform:scale(0)}64%{transform:scale(1.25)}72%,92%{transform:scale(1);opacity:1}100%{transform:scale(1);opacity:0}}
+.s-seed{animation:seed 8s infinite}
+@keyframes seed{0%,10%{opacity:1}14%,100%{opacity:0}}
+
+.s-tossx{animation:tossx 4s infinite linear}
+.s-tossy{animation:tossy 4s infinite}
+.s-tossb{animation:tossb 4s infinite}
+@keyframes tossx{0%,8%{transform:translateX(0)}62%,100%{transform:translateX(var(--dx,360px))}}
+@keyframes tossy{0%,8%{transform:translateY(0);animation-timing-function:ease-out}35%{transform:translateY(var(--dy,-170px));animation-timing-function:ease-in}62%,100%{transform:translateY(var(--ey,26px))}}
+@keyframes tossb{0%,60%{opacity:1}64%,100%{opacity:0}}
+.s-thanks{animation:thanks 4s infinite}
+@keyframes thanks{0%,62%{transform:scale(0);opacity:0}70%{transform:scale(1.3);opacity:1}78%,92%{transform:scale(1);opacity:1}100%{transform:scale(0);opacity:0}}
+.s-catch{animation:catch 4s infinite}
+@keyframes catch{0%,60%,76%,100%{transform:scale(1,1)}66%{transform:scale(1.08,.92)}71%{transform:scale(.97,1.04)}}
+
+.s-bat{animation:batgo 7s var(--dl,0s) linear infinite}
+@keyframes batgo{0%{transform:translate(0,0);opacity:0}4%{opacity:1}58%{transform:translate(var(--dx,450px),0)}68%{transform:translate(var(--dx,450px),80px);opacity:1}70%,100%{transform:translate(var(--dx,450px),80px);opacity:0}}
+
+.s-peel{animation:peel 7s var(--dl,0s) ease-in infinite}
+@keyframes peel{0%{transform:translateY(-300px) rotate(0);opacity:0}6%{opacity:1}34%{transform:translateY(60px) rotate(220deg);opacity:1}35%,100%{transform:translateY(60px) rotate(220deg);opacity:0}}
+
+.s-level{animation:level 9s ease-in-out infinite}
+@keyframes level{0%{transform:translateY(100%)}85%,94%{transform:translateY(8%)}100%{transform:translateY(100%)}}
+
+.s-dn-x{animation:dnx 5s infinite linear}
+.s-dn-y{animation:dny 5s infinite}
+@keyframes dnx{0%,16%{transform:translateX(0);opacity:0}22%{opacity:1}64%,92%{transform:translateX(var(--dx,300px));opacity:1}100%{transform:translateX(var(--dx,300px));opacity:0}}
+@keyframes dny{0%,16%{transform:translateY(0);animation-timing-function:ease-out}42%{transform:translateY(-150px);animation-timing-function:ease-in}64%,100%{transform:translateY(40px)}}
+
+.s-wave{animation:wave var(--d,1.3s) var(--dl,0s) ease-out infinite}
+@keyframes wave{0%{transform:scale(.4);opacity:.9}100%{transform:scale(1.3);opacity:0}}
+.s-beam{stroke-dasharray:10 14;animation:dash .9s linear infinite}
+
+@media(prefers-reduced-motion:reduce){
+  .scene *{animation:none!important}
+  .scene .c-b,.scene .s-stream,.scene .s-seed{opacity:0}
+}

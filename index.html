@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#eef7ea">
+<title>Ruleta Terra | Hábitos Sostenibles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./scenes.css">
+<style>
+  :root{
+    --green:#1b5e20;--ink:#17301a;--soft:#e8f5e9;--line:#cfe6cf;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    min-height:100vh;color:var(--ink);font-family:Montserrat,sans-serif;overflow-x:hidden;
+    background:radial-gradient(900px 500px at 0 0,#e8f5e9 0%,transparent 65%),
+      radial-gradient(900px 500px at 100% 5%,#e1f5fe 0%,transparent 62%),
+      linear-gradient(160deg,#fbfef8,#eef7ea 55%,#e7f3e4);
+  }
+  .wrap{max-width:1440px;margin:auto;padding:18px 24px 32px}
+  header{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .logo{width:56px;height:56px;flex:none}
+  h1{font:34px 'Luckiest Guy',cursive;letter-spacing:1px;color:var(--green);text-shadow:3px 3px #c8e6c9}
+  .sub{margin-top:3px;color:#4e7a52;font-size:13.5px;font-weight:600}
+  .pill{border:2px solid var(--line);border-radius:999px;background:#fff;padding:8px 14px;color:var(--green);font-size:13px;font-weight:800;box-shadow:0 6px 16px #1b5e2014}
+  main{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:center;transition:grid-template-columns .5s cubic-bezier(.2,.75,.25,1)}
+  main.has-result{grid-template-columns:minmax(260px,.78fr) minmax(0,1.22fr);align-items:center}
+  .card{min-width:0;border:1px solid #dcebd8;border-radius:28px;background:#fffffff0;padding:20px;box-shadow:0 18px 44px #17301a1a;backdrop-filter:blur(8px)}
+  #wheel-card{grid-column:1/-1;display:grid;place-items:center;min-height:min(76vh,780px);transition:min-height .5s,padding .5s}
+  #wheel-wrap{display:flex;flex-direction:column;align-items:center;gap:16px;width:100%}
+  #wheel-holder{width:min(100%,640px);aspect-ratio:1;transition:width .5s}
+  main.has-result #wheel-card{grid-column:1;min-height:0;align-self:center;padding:18px}
+  main.has-result #wheel-holder{width:min(100%,360px)}
+  main.has-result #wheel-wrap{gap:10px}
+  main.has-result #btn-spin{display:none}
+  canvas{display:block;width:100%!important;height:auto!important;aspect-ratio:1}
+  #panel[hidden]{display:none}
+  #panel{grid-column:2;display:flex;flex-direction:column;gap:16px;animation:panel-in .45s ease both}
+  #scene-box{overflow:hidden;border:1px solid #d5e8d2;border-radius:22px;background:#e8f5e9;box-shadow:0 14px 34px #17301a24}
+  #scene-holder{display:flex;justify-content:center;width:100%}
+  #scene-holder svg{border-radius:21px}
+  #wheel-holder canvas{cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+  #wheel-holder canvas:focus-visible{outline:3px solid #ff8f00;outline-offset:6px;border-radius:50%}
+  #scene-box{animation:scene-in .6s cubic-bezier(.2,.9,.3,1.2) .15s both}
+  #btn-spin:not(:disabled){animation:btn-pulse 1.8s ease-in-out infinite}
+  #btn-spin:disabled{animation:none}
+  @keyframes scene-in{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+  @keyframes btn-pulse{50%{transform:scale(1.05)}}
+  @keyframes btn-pulse-active{50%{transform:scale(1.05)}}
+  .tema-tag{display:inline-block;margin-bottom:8px;padding:6px 14px;border-radius:12px;background:#e8f5e9;border:1.5px solid #a5d6a7;color:var(--green);font-size:13px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;box-shadow:0 2px 6px #1b5e2012}
+  .pregunta{color:var(--green);font-size:clamp(20px,2.4vw,28px);font-weight:800;line-height:1.4}
+  .back-button{
+    border:2px solid var(--line);border-radius:13px;background:#fff;padding:10px 15px;
+    color:var(--green);font:800 13px Montserrat,sans-serif;cursor:pointer;transition:background .15s,border-color .15s,transform .1s;
+  }
+  .back-button:hover{border-color:#a5d6a7;background:var(--soft);transform:scale(1.02)}
+  #btn-spin{
+    border:0;border-radius:18px;background:linear-gradient(#66bb6a,#2e7d32);padding:14px 46px;
+    color:white;font:25px 'Luckiest Guy',cursive;letter-spacing:1px;cursor:pointer;
+    box-shadow:0 7px #1b5e20,0 14px 28px #1b5e2047;transition:transform .08s,filter .2s;
+  }
+  #btn-spin:hover{filter:brightness(1.06)}
+  #btn-spin:active{transform:translateY(5px);box-shadow:0 2px #1b5e20}
+  #btn-spin:disabled{opacity:.7;cursor:default}
+  #counter{max-width:370px;color:#5c7d60;font-size:13px;font-weight:700;line-height:1.5;text-align:center}
+  #btn-reset{margin-top:2px}
+  button:focus-visible{outline:3px solid #ff8f00;outline-offset:4px}
+  @keyframes panel-in{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
+  @media(max-width:760px){
+    @keyframes panel-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    .wrap{padding:12px 14px 24px}
+    header{gap:10px;margin-bottom:12px}
+    .logo{width:44px;height:44px}
+    h1{font-size:27px}
+    .sub{max-width:240px;font-size:11px;line-height:1.35}
+    .pill{padding:6px 10px;font-size:11px}
+    main{gap:12px}
+    .card{padding:14px;border-radius:22px}
+    #wheel-card{min-height:calc(100vh - 150px);min-height:calc(100svh - 150px)}
+    #wheel-holder{width:min(100%,640px,calc(100svh - 280px))}
+    #btn-spin{padding:12px 36px}
+    main.has-result{grid-template-columns:minmax(0,1fr);gap:12px}
+    main.has-result #wheel-card{grid-column:1;min-height:0;justify-items:start;padding:10px 14px}
+    main.has-result #wheel-holder{width:min(48vw,190px)}
+    main.has-result #wheel-wrap{align-items:flex-start;gap:8px}
+    main.has-result #btn-spin{display:none}
+    main.has-result #counter{font-size:11px;text-align:left}
+    main.has-result .back-button{padding:8px 10px;font-size:11px}
+    #panel{grid-column:1;gap:12px;padding:14px}
+  }
+  @media(max-width:380px){
+    .wrap{padding-inline:10px}
+    .brand{gap:9px}
+    .sub{max-width:210px}
+    .meta{width:100%}
+    #wheel-holder{width:min(100%,calc(100svh - 260px))}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 64 64" aria-hidden="true">
+        <defs>
+          <radialGradient id="globe" cx="35%" cy="30%" r="70%">
+            <stop offset="0%" stop-color="#64b5f6"/><stop offset="60%" stop-color="#1e88e5"/><stop offset="100%" stop-color="#0d47a1"/>
+          </radialGradient>
+          <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#81c784"/><stop offset="100%" stop-color="#2e7d32"/>
+          </linearGradient>
+        </defs>
+        <circle cx="32" cy="34" r="24" fill="url(#globe)"/>
+        <path d="M18 28c6-2 10 2 16 0s8-4 12-2c-2 10-10 18-20 18S16 40 18 28z" fill="url(#leaf)"/>
+        <path d="M40 10c8 2 12 8 10 14-6-2-10-6-10-14z" fill="url(#leaf)"/>
+      </svg>
+      <div>
+        <h1>RULETA TERRA</h1>
+        <div class="sub">Hábitos sostenibles para niñas y niños guardianes del planeta</div>
+      </div>
+    </div>
+    <div class="meta"><div class="pill" id="pill-count" aria-live="polite">0 / 20 retos descubiertos</div></div>
+  </header>
+  <main id="experience">
+    <section class="card" id="wheel-card">
+      <div id="wheel-wrap">
+        <div id="wheel-holder" aria-label="Ruleta de retos ambientales"></div>
+        <button id="btn-spin">GIRAR</button>
+        <div id="counter" aria-live="polite">Toca la ruleta o el botón para descubrir un reto ambiental.</div>
+        <button class="back-button" id="btn-back" hidden>CERRAR ANIMACIÓN</button>
+        <button class="back-button" id="btn-reset">REINICIAR RULETA</button>
+      </div>
+    </section>
+    <section class="card" id="panel" hidden aria-live="polite">
+      <div><span class="tema-tag" id="el-tema"></span><div class="pregunta" id="el-pregunta"></div></div>
+      <div id="scene-box"><div id="scene-holder"></div></div>
+    </section>
+  </main>
+</div>
+<script type="module" src="./app.js"></script>
+</body>
+</html>
