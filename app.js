@@ -88,7 +88,7 @@ function openResult(index){
       ? "¡Completaste todos los retos! Eres Guardián del Planeta."
       : `¡Reto descubierto! Quedan ${left} casillas.`;
   }
-  theme.textContent = `${index + 1}. ${reto.tema}`;
+  theme.textContent = `Reto ${index + 1}`;
   question.textContent = reto.pregunta;
   sceneHolder.innerHTML = getScene(reto.id);
   showingResult = true;
