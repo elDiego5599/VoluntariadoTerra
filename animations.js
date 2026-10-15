@@ -5,7 +5,7 @@ export const RETOS = [
   {id:"reciclaje",tema:"SEPAREMOS LA BASURA",pregunta:"En casa tenemos papel, cáscaras y botellas. ¿Dónde va cada cosa?",start:"#66bb6a",end:"#2e7d32"},
   {id:"comida",tema:"NO BOTEMOS COMIDA",pregunta:"Sobró comida en el plato. ¿Qué hacemos para que no se dañe?",start:"#ffa726",end:"#e65100"},
   {id:"aire",tema:"AIRE LIMPIO",pregunta:"Si el colegio queda cerca, ¿cómo podemos ir sin hacer humo?",start:"#4dd0e1",end:"#00838f"},
-  {id:"arboles",tema:"CUIDEMOS LOS ÁRBOLES",pregunta:"Hace mucho calor en el patio. ¿Qué nos da el árbol?",start:"#81c784",end:"#1b5e20"},
+  {id:"arboles",tema:"CUIDEMOS LOS ÁRBOLES",pregunta:"Vamos al patio de la casa. ¿Qué cosas buenas nos da un árbol?",start:"#81c784",end:"#1b5e20"},
   {id:"polinizadores",tema:"ABEJAS Y FLORES",pregunta:"En el jardín hay flores y abejas. ¿Qué buscan las abejas en las flores?",start:"#ce93d8",end:"#6a1b9a"},
   {id:"papel",tema:"USEMOS MENOS PAPEL",pregunta:"Se nos acabaron las hojas del cuaderno. ¿Cómo gastamos menos hojas?",start:"#d7ccc8",end:"#5d4037"},
   {id:"ropa",tema:"ROPA PARA COMPARTIR",pregunta:"Esta camiseta ya no nos queda. ¿Qué hacemos con ella?",start:"#f48fb1",end:"#ad1457"},
@@ -13,7 +13,7 @@ export const RETOS = [
   {id:"huerta",tema:"SEMBREMOS PLANTAS",pregunta:"Sembramos una semilla en casa. ¿Qué le damos para que crezca?",start:"#aed581",end:"#33691e"},
   {id:"basura",tema:"BARRIO LIMPIO",pregunta:"Terminamos la merienda en el parque. ¿Dónde dejamos el envoltorio?",start:"#bcaaa4",end:"#4e342e"},
   {id:"ruido",tema:"MENOS RUIDO",pregunta:"¿Qué pasa cuando ponemos la música o la tele muy fuerte en casa?",start:"#90caf9",end:"#1565c0"},
-  {id:"pilas",tema:"PILAS USADAS",pregunta:"El control remoto se quedó sin pilas. ¿Dónde botamos las pilas gastadas?",start:"#b0bec5",end:"#37474f"},
+  {id:"pilas",tema:"PILAS USADAS",pregunta:"Ya se gastaron estas pilas. ¿Dónde las botamos?",start:"#b0bec5",end:"#37474f"},
   {id:"lluvia",tema:"AGUA DE LLUVIA",pregunta:"Está lloviendo y el agua cae del techo. ¿Qué podemos hacer con ella?",start:"#4fc3f7",end:"#01579b"},
   {id:"oceano",tema:"CUIDEMOS EL MAR",pregunta:"Fuimos a la playa o al río. ¿Qué cosas no debemos dejar ahí?",start:"#26c6da",end:"#004d40"},
   {id:"compost",tema:"CÁSCARAS Y PLANTAS",pregunta:"Pelamos una fruta en la cocina. ¿Qué hacemos con las cáscaras?",start:"#a1887f",end:"#3e2723"},
@@ -33,7 +33,7 @@ const scenes = {
   agua: A.water, luz: A.light, plastico: A.plastic, reciclaje: A.recycling, comida: A.food,
   aire: A.air, arboles: A.trees, polinizadores: B.pollinators, papel: B.paper, ropa: B.clothes,
   transporte: B.transport, huerta: B.garden, basura: B.park, ruido: B.noise, pilas: withKid(O.batteries, 430, {shirt: "#42a5f5", pants: "#37474f", hair: "#212121", style: "short", l: 4, r: -130, anim: "r", s: 1.15}),
-  lluvia: withKid(O.rain, 130, {shirt: "#ffca28", pants: "#1e88e5", hair: "#6d4c41", style: "pony", l: 4, r: -130, anim: "r", s: 1.15}), oceano: O.ocean, compost: withKid(O.compost, 85, {shirt: "#ef5350", pants: "#3949ab", hair: "#4e342e", style: "curly", l: 4, r: -130, anim: "r", s: 1.15}), sol: B.solar, juguetes: O.toys
+  lluvia: withKid(O.rain, 130, {shirt: "#ffca28", pants: "#1e88e5", hair: "#6d4c41", style: "pony", l: 4, r: -130, anim: "r", s: 1.15}), oceano: O.ocean, compost: withKid(O.compost, 85, {shirt: "#ef5350", pants: "#3949ab", hair: "#4e342e", style: "curly", l: 4, r: -130, anim: "r", s: 1.15}), sol: B.solar, juguetes: B.toys
 };
 
 export function getScene(id) {

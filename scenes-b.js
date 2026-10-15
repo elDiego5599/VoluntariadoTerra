@@ -123,3 +123,15 @@ ${an("c-b", at(75, 585, kid({shirt: "#ffa726", pants: "#3949ab", hair: "#4e342e"
 ${an("c-b", [0, 1, 2].map(i => an("a-rise", heart(620 + i * 50, 400, .8, ["#ec407a", "#ffb300", "#66bb6a"][i]), 3, i * .8, "--y:-70px")).join(""), 6)}
 ${phase()}
 `);
+
+// 20. JUGUETES: lo que ya no usamos puede alegrar a otro niño
+const teddy = (s = 1) => at(0, 0, `${circ(-30, -88, 16, "#a1887f")}${circ(30, -88, 16, "#a1887f")}${rect(-34, -56, 68, 56, "#a1887f", 24)}${circ(0, -86, 34, "#a1887f")}${circ(0, -76, 16, "#d7ccc8")}${circ(-12, -92, 4, "#263238")}${circ(12, -92, 4, "#263238")}${circ(0, -80, 5, "#5d4037")}`, s);
+const toyCar = (s = 1) => at(0, 0, `${rect(-46, -34, 92, 26, "#e53935", 10)}${rect(-26, -56, 50, 26, "#ef5350", 10)}${rect(-18, -50, 16, 14, "#e1f5fe", 3)}${rect(4, -50, 16, 14, "#e1f5fe", 3)}${circ(-26, -6, 12, "#263238")}${circ(26, -6, 12, "#263238")}`, s);
+export const toys = () => svg("juguetes", "#ede7f6", "#d1c4e9", `
+${rect(0, 0, 800, 440, "#ede7f6")}${Array.from({length: 8}, (_, i) => rect(i * 100, 0, 50, 440, "#fff", 0, 'opacity=".2"')).join("")}
+${rect(60, 90, 200, 150, "#fff", 12)}${rect(72, 102, 176, 126, "#b3e5fc", 8)}${line("M160 102V228M72 165H248", "#fff", 7)}
+${rect(0, 440, 800, 160, "#b39ddb")}${rect(0, 440, 800, 14, "#9575cd")}
+${an("c-a", `${at(560, 500, `${shade(0, 6, 140, .2)}${rect(-130, -90, 260, 90, "#8d6e63", 14)}${rect(-142, -110, 284, 26, "#6d4c41", 10)}${at(-60, -118, teddy(.9))}${at(40, -118, toyCar(1.1))}${circ(100, -122, 24, "#42a5f5")}`)}${[0, 1].map(i => at(520 + i * 90, 300, an("a-bob", text(0, 0, "z", 36 - i * 6, "#7e57c2"), 3, i * .8))).join("")}${at(250, 585, kid({shirt: "#42a5f5", pants: "#37474f", hair: "#212121", style: "short", mood: "sad", l: 8, r: -8, s: 1.2}))}`, 6)}
+${an("c-b", `${at(180, 585, kid({shirt: "#42a5f5", pants: "#37474f", hair: "#212121", style: "short", l: 8, r: -40, anim: "r", s: 1.2}))}${at(470, 585, kid({shirt: "#ec407a", pants: "#5c6bc0", hair: "#ffb300", style: "pony", l: 8, r: -140, anim: "r", s: .95}))}${an("s-catch o-b", at(320, 500, teddy(1.3)), 6)}${okBadge(400, 280, 34)}${[0, 1, 2].map(i => an("a-rise", heart(300 + i * 90, 360, .8, ["#ec407a", "#ffb300", "#66bb6a"][i]), 3, i * .8, "--y:-70px")).join("")}${at(650, 500, toyCar(1.2))}`, 6)}
+${phase()}
+`);

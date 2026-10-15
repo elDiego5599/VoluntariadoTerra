@@ -11,7 +11,7 @@ ${rect(420, 450, 380, 150, "#eceff1")}${rect(420, 450, 380, 16, "#fff")}
 <ellipse cx="610" cy="452" rx="150" ry="26" fill="#b0bec5"/><ellipse cx="610" cy="456" rx="124" ry="18" fill="#90a4ae"/><ellipse cx="610" cy="470" rx="14" ry="5" fill="#455a64"/>
 ${an("c-a", `<ellipse cx="560" cy="458" rx="88" ry="12" fill="#4fc3f7" opacity=".85"/>${[0, 1, 2].map(i => at(560, 458, an("s-wave", `<ellipse rx="70" ry="10" fill="none" stroke="#0288d1" stroke-width="3"/>`, 0, 0, `--d:1.5s;--dl:${i * .5}s`))).join("")}`, 6)}
 ${line("M640 452V300Q640 252 590 252H560", "#90a4ae", 38)}${line("M640 452V300Q640 262 590 262H560", "#eceff1", 9, 'opacity=".8"')}${rect(540, 252, 38, 26, "#607d8b", 8)}
-${at(640, 270, an("c-flip", `${rect(-46, -9, 92, 18, "#ef5350", 9)}${circ(-46, 0, 14, "#c62828")}${circ(46, 0, 14, "#c62828")}`, 6, 0, "--a:rotate(0deg);--b:rotate(-80deg)"))}
+${at(640, 270, an("c-flip", `${rect(-28, -6, 56, 12, "#ef5350", 6)}${circ(-28, 0, 10, "#c62828")}${circ(28, 0, 10, "#c62828")}`, 6, 0, "--a:rotate(0deg);--b:rotate(-80deg)"))}
 ${at(559, 276, an("s-stream o-t", `${rect(-10, 0, 20, 178, "#4fc3f7", 10, 'opacity=".92"')}${rect(-4, 0, 5, 178, "#e1f5fe", 3, 'opacity=".8"')}`, 6) + an("c-a", [0, 1, 2].map(i => an("a-fall", at(0, 0, path(DROP, "#29b6f6"), .8), 1, i * .33, "--y:180px")).join(""), 6))}
 ${at(235, 585, kid({shirt: "#ab47bc", pants: "#5c6bc0", hair: "#4e342e", style: "pony", l: 8, r: -148, anim: "r", s: 1.25,
   extra: `${an("a-wiggle", `${rect(38, -176, 8, 40, "#fff", 4, 'transform="rotate(-70 42 -156)"')}${rect(42, -176, 8, 16, "#26c6da", 4, 'transform="rotate(-70 42 -156)"')}`, .35)}${circ(14, -140, 6, "#fff")}${circ(-6, -136, 5, "#fff")}${circ(22, -132, 5, "#fff")}`}))}
