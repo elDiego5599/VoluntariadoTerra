@@ -111,3 +111,15 @@ ${at(680, 420, `
 ${at(230, 520, an("c-flip", `${circ(0, 0, 30, "#ffb300", 'stroke="#f57f17" stroke-width="6"')}${rect(-4, -28, 8, 24, "#263238", 4)}`, 6, 0, "--a:rotate(100deg);--b:rotate(-70deg)"))}
 ${phase()}
 `);
+
+// 19. SECAR CON EL SOL: la secadora gasta luz, el sol seca gratis
+export const solar = () => svg("sol", "#fff8e1", "#e1f5fe", `
+${an("c-b", sun(120, 110, 44, true), 6)}${cloud(480, 90, .9, 12)}${hills(430, "#c5e1a5", "#aed581")}${grass(470, "#9ccc65", "#7cb342")}
+${an("c-a", `${rect(0, 0, 800, 600, "#cfd8dc", 0, 'opacity=".55"')}`, 6)}
+${an("c-a", at(560, 500, `${shade(0, 6, 110, .2)}${rect(-100, -250, 200, 250, "#eceff1", 20, 'stroke="#b0bec5" stroke-width="5"')}${rect(-84, -236, 168, 40, "#90a4ae", 10)}${circ(0, -120, 70, "#78909c")}${circ(0, -120, 54, "#cfd8dc")}${an("a-spin", `<path d="M-30 -120A30 30 0 0 1 30 -120" fill="none" stroke="#fff" stroke-width="8"/>`, 1.2).replace("<g", "<g transform-origin=\"0 -120\"")}${at(0, -120, face(0, 0, 1, "sad"), 1)}`) + [0, 1, 2].map(i => an("a-rise", at(560 + (i - 1) * 60, 240, `<path d="M0 -26L-12 4H0L-8 28L14 -8H2L10 -26Z" fill="#fbc02d"/>`), 2, i * .5, "--y:-60px")).join(""), 6)}
+${an("c-b", rect(150, 250, 12, 220, "#8d6e63", 5) + rect(560, 250, 12, 220, "#8d6e63", 5) + line("M156 280Q360 330 566 280", "#78909c", 4) + [["#1e88e5", 240], ["#43a047", 360], ["#ec407a", 480]].map(([c, x], i) => at(x, 308 + (i === 1 ? 14 : 0), an("a-sway o-t", `<g transform="translate(0 34)">${shirt(c, 1.1)}</g>${face(0, 34, .5)}`, 3 + i * .4, i * .5))).join(""), 6)}
+${an("c-a", at(75, 585, kid({shirt: "#ffa726", pants: "#3949ab", hair: "#4e342e", style: "pony", mood: "sad", l: 8, r: -8, s: 1.2})), 6)}
+${an("c-b", at(75, 585, kid({shirt: "#ffa726", pants: "#3949ab", hair: "#4e342e", style: "pony", l: 8, r: -130, anim: "r", s: 1.2})), 6)}
+${an("c-b", [0, 1, 2].map(i => an("a-rise", heart(620 + i * 50, 400, .8, ["#ec407a", "#ffb300", "#66bb6a"][i]), 3, i * .8, "--y:-70px")).join(""), 6)}
+${phase()}
+`);
