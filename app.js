@@ -95,7 +95,7 @@ function openResult(index){
   experience.classList.add("has-result");
   panel.hidden = false;
   backButton.hidden = false;
-  history.replaceState(null, "", `#${reto.id}`);
+  history.replaceState(null, "", `#${index + 1}`);
   highlight = null;
   buildFace();
   requestFrame();
