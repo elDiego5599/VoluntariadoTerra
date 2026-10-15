@@ -155,6 +155,12 @@ const geometry = () => {
   return {k, c: size / 2, R: size / 2 - 36 * k};
 };
 
+function mix(a, b, t){
+  const p = h => [1, 3, 5].map(n => parseInt(h.slice(n, n + 2), 16));
+  const x = p(a), y = p(b);
+  return "#" + x.map((v, i) => Math.round(v + (y[i] - v) * t).toString(16).padStart(2, "0")).join("");
+}
+
 function buildFace(){
   if(!size) return;
   faceCanvas = document.createElement("canvas");
@@ -172,7 +178,7 @@ function buildFace(){
     const end = start + ARC;
     const grad = g.createRadialGradient(0, 0, R * .1, 0, 0, R);
     grad.addColorStop(0, reto.start);
-    grad.addColorStop(1, reto.end);
+    grad.addColorStop(1, mix(reto.start, reto.end, .45));
     g.beginPath();
     g.moveTo(0, 0);
     g.arc(0, 0, R, start, end);
@@ -299,18 +305,6 @@ function draw(now){
     ctx.stroke();
   }
   ctx.restore();
-
-  // centro
-  const hub = ctx.createRadialGradient(c, c - 6 * k, 3 * k, c, c, R * .2);
-  hub.addColorStop(0, "#bcaaa4");
-  hub.addColorStop(1, "#4e342e");
-  ctx.beginPath();
-  ctx.arc(c, c, R * .17, 0, TAU);
-  ctx.fillStyle = hub;
-  ctx.fill();
-  ctx.lineWidth = 4 * k;
-  ctx.strokeStyle = "#fff";
-  ctx.stroke();
 
   drawPointer(k, c);
 
