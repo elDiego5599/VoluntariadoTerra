@@ -17,7 +17,7 @@
 .a-float{animation:float var(--d,8s) var(--dl,0s) ease-in-out infinite}
 .a-fall{animation:fall var(--d,2s) var(--dl,0s) ease-in infinite}
 .a-rise{animation:fall var(--d,3s) var(--dl,0s) ease-out infinite}
-.a-drive{animation:drive var(--d,9s) var(--dl,0s) linear infinite}
+.a-drive{animation:drive var(--d,9s) var(--dl,0s) linear infinite backwards}
 .a-flap{animation:flap var(--d,.18s) var(--dl,0s) ease-in-out infinite}
 .a-ripple{animation:ripple var(--d,2s) var(--dl,0s) ease-out infinite}
 .a-wiggle{animation:wiggle var(--d,.4s) var(--dl,0s) ease-in-out infinite}
@@ -57,7 +57,7 @@
 
 .s-bin{animation:binbounce 6s var(--dl,0s) infinite}
 .s-lid{animation:binlid 6s var(--dl,0s) infinite}
-.s-item{animation:binitem 6s var(--dl,0s) ease-in infinite}
+.s-item{animation:binitem 6s var(--dl,0s) ease-in infinite backwards}
 @keyframes binbounce{0%,29%,40%,100%{transform:scale(1,1)}33%{transform:scale(1.07,.93)}37%{transform:scale(.97,1.04)}}
 @keyframes binlid{0%,14%,34%,100%{transform:rotate(0)}22%,28%{transform:rotate(-24deg)}}
 @keyframes binitem{0%{transform:translateY(-230px);opacity:0}6%{opacity:1}30%{transform:translateY(40px);opacity:1}31%,100%{transform:translateY(40px);opacity:0}}
@@ -85,10 +85,10 @@
 .s-catch{animation:catch 4s infinite}
 @keyframes catch{0%,60%,76%,100%{transform:scale(1,1)}66%{transform:scale(1.08,.92)}71%{transform:scale(.97,1.04)}}
 
-.s-bat{animation:batgo 7s var(--dl,0s) linear infinite}
+.s-bat{animation:batgo 7s var(--dl,0s) linear infinite backwards}
 @keyframes batgo{0%{transform:translate(0,0);opacity:0}4%{opacity:1}26%{transform:translate(calc(var(--dx,450px) * .5),-380px)}50%{transform:translate(var(--dx,450px),-290px)}60%{transform:translate(var(--dx,450px),-120px);opacity:1}62%,100%{transform:translate(var(--dx,450px),-120px);opacity:0}}
 
-.s-peel{animation:peel 7s var(--dl,0s) ease-in infinite}
+.s-peel{animation:peel 7s var(--dl,0s) ease-in infinite backwards}
 @keyframes peel{0%{transform:translateY(-300px) rotate(0);opacity:0}6%{opacity:1}34%{transform:translateY(60px) rotate(220deg);opacity:1}35%,100%{transform:translateY(60px) rotate(220deg);opacity:0}}
 
 .s-level{animation:level 9s ease-in-out infinite}
