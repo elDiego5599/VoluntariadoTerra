@@ -92,6 +92,11 @@ function openResult(index){
   theme.textContent = `Reto ${index + 1}`;
   question.textContent = reto.pregunta;
   sceneHolder.innerHTML = getScene(reto.id);
+  // Chromium no arranca los animateMotion de un SVG insertado dinámicamente hasta que pasa su primer periodo
+  requestAnimationFrame(() => {
+    const svg = sceneHolder.querySelector("svg");
+    if(svg){ svg.pauseAnimations(); svg.unpauseAnimations(); }
+  });
   showingResult = true;
   experience.classList.add("has-result");
   panel.hidden = false;
