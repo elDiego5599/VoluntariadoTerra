@@ -46,6 +46,7 @@ let kick = 0;             // desviación del puntero
 let lastTick = -1;
 let showingResult = false;
 let confetti = [];
+let openTimer = 0;
 
 /* ------------------------------ UI ------------------------------ */
 
@@ -125,6 +126,7 @@ function resetProgress(){
     counter.textContent = "No se pudo reiniciar el progreso en este dispositivo.";
     return;
   }
+  clearTimeout(openTimer);
   seen.clear();
   spin = null;
   highlight = null;
@@ -353,7 +355,7 @@ function frame(now){
         highlight = {slot: spin.slot, t0: now};
         spin = null;
         burst();
-        setTimeout(() => openResult(index), reducedMotion ? 0 : 1300);
+        openTimer = setTimeout(() => openResult(index), reducedMotion ? 0 : 1300);
       }
     }
     // un "clic" cada vez que una púa pasa por el puntero
